@@ -1,0 +1,16 @@
+# Ignorar archivos de compilación
+bin/
+obj/
+
+# Ignorar archivos del sistema operativo (Windows, macOS, etc.)
+Thumbs.db
+.DS_Store
+
+# Ignorar archivos de configuración de VSCode
+.vscode/
+
+# Ignorar archivos de dependencias de NuGet
+*.nuget/
+
+# Ignorar archivos de configuración de Visual Studio
+.vs/
