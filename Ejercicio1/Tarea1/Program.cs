@@ -24,18 +24,11 @@ class Program
 
         for (int i = 0; i < NUM_PACIENTES; i++)
         {
+            
             pacientes[i] = new Thread(AtenderPaciente);
             pacientes[i].Start(i + 1);
             Thread.Sleep(2000);
         }
-
-        // esperamos a que todos terminen
-        foreach (Thread paciente in pacientes)
-        {
-            paciente.Join();
-        }
-
-        Console.WriteLine("Se han atendido todos los pacientes.");
     }
 
     // Encontramos un médico libre
