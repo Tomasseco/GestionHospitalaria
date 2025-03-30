@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 class Program
 {
-    static readonly int NUM_PACIENTES = 20;
+    static readonly int NUM_PACIENTES = 50; // Cambiar para las pruebas 50 / 100 / 1000
     static readonly int NUM_MEDICOS = 4;
     static readonly int NUM_MAQUINAS_DIAGNOSTICO = 2;
     
