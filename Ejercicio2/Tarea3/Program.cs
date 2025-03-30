@@ -8,13 +8,15 @@ class Program
     static readonly int NUM_PACIENTES = 20;
     static readonly int NUM_MEDICOS = 4;
     static readonly int NUM_MAQUINAS_DIAGNOSTICO = 2;
-    
+     
+    // Creamos los semaforos para los médicos (cada médico solo atiende a un paciente a la vez)
     static SemaphoreSlim[] medicos = new SemaphoreSlim[NUM_MEDICOS];
     static SemaphoreSlim maquinasDiagnostico = new SemaphoreSlim(NUM_MAQUINAS_DIAGNOSTICO);
     static Queue<RegistroPaciente> colaDiagnostico = new Queue<RegistroPaciente>();
     static object lockCola = new object();
     static Random random = new Random();
-
+    
+    // Enum para los estados del paciente
     public enum Estado
     {
         EsperaConsulta,
@@ -58,11 +60,13 @@ class Program
 
     static void Main()
     {
+        // Inicializar médicos
         for (int i = 0; i < NUM_MEDICOS; i++)
         {
             medicos[i] = new SemaphoreSlim(1, 1);
         }
 
+        // Creamos los hilos para los pacientes
         Thread[] pacientes = new Thread[NUM_PACIENTES];
         Stopwatch cronometroGeneral = new Stopwatch();
         cronometroGeneral.Start();
@@ -71,6 +75,7 @@ class Program
         {
             int idPaciente = random.Next(10, 100);
             int tiempoConsulta = random.Next(5, 15);
+            // aleatoriamente si necesitra diagnostico
             bool requiereDiagnostico = random.Next(0, 2) == 1;
             int tiempoLlegada = cronometroGeneral.Elapsed.Seconds;
 
